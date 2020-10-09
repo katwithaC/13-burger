@@ -11,19 +11,16 @@ var orm = {
    },
 
    insertOne: function(burger_name, devoured) {
-       var querySting = "INSERT INTO burgers SET;
-      //  VALUES (" + burger_name + "," + devoured +")";
+    var queryString = "INSERT INTO burgers (burger_name, devoured) VALUES (" + burger_name + ", " + devoured + ")";
        connection.query(queryString, function(err, result) {
         if (err) throw err;
         return result;
     });
 },
-       
-   },
-
-   updateOne: function(burger_id, ) {
+    
+   updateOne: function(burger_id, burger_name) {
      var queryString = "UPDATE burgers SET ? WHERE ?";
-     connection.query(queryString, ) function(err, result) {
+     connection.query(queryString, function(err, result) {
       if (err) throw err;
       return result;
   });

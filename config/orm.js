@@ -13,15 +13,15 @@ function printQuestionMarks(num) {
   return arr.toString();
 }
 
-// Helper function to convert object key/value pairs to SQL syntax
+
 function objToSql(obj) {
   var arr = [];
-  // loop through keys and push key/value pair as str into arr
+
   for (var key in obj) {
       var value = obj[key];
-      // this method checks whether the object has the specified property as its own property (as opposed to inheriting it)
+    
       if (Object.hasOwnProperty.call(obj, key)) {
-          // add quotes if the string has spaces
+          
           if (typeof value === "string" && value.indexOf(" ") >= 0) {
               value = "'" + value + "'";
           }
@@ -31,9 +31,9 @@ function objToSql(obj) {
   }
 }
 
-// Methods needed in order to retrieve and store data in database
+
 var orm = {
-  // function returns all entries
+ 
   selectAll: function (tableInput, cb) {
       var queryString = "SELECT * FROM " + tableInput + ";";
       connection.query(queryString, function (err, result) {
@@ -43,7 +43,7 @@ var orm = {
           cb(result);
       });
   },
-  // function to insert table entry
+
   insertOne: function (table, cols, vals, cb) {
       var queryString = "INSERT INTO " + table;
 
@@ -54,7 +54,7 @@ var orm = {
       queryString += printQuestionMarks(vals.length);
       queryString += ") ";
 
-      // testing
+      
       console.log(queryString);
 
       connection.query(queryString, vals, function (err, result) {
@@ -64,7 +64,6 @@ var orm = {
           cb(result);
       });
   },
-  // function to update table entry
   updateOne: function (table, objColVals, condition, cb) {
       var queryString = "UPDATE " + table;
 

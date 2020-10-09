@@ -6,11 +6,11 @@ var app = express();
 
 app.use(express.static("public"));
 
-// parse application body as JSON
+
 app.use(express.urlencoded({ extended: true}));
 app.use(express.json());
 
-//set handlebars
+
 var exphbs = require("express-handlebars");
 
 app.engine("handlebars", exphbs({defaultLayout: "main" }));

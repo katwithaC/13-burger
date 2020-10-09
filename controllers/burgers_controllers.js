@@ -33,7 +33,7 @@ router.get("/", function(req, res) {
     console.log("condition", condition);
   
     burger.updateOne({
-      devoured: true;
+      devoured: false,
     }, condition, function (data) {
       res.redirect("/");
     });

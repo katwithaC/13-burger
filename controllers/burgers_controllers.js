@@ -2,11 +2,11 @@ var express = require("express");
 
 var router = express.Router();
 
-var burger = require("../models/burger.js");
+var burgers = require("../models/burger.js");
 
 
 router.get("/", function(req, res) {
-    burger.selectAll(function(data) {
+    burgers.selectAll(function(data) {
       var hbsObject = {
         burgers: data
       };
@@ -16,7 +16,7 @@ router.get("/", function(req, res) {
   });
   
   router.post("/burgers", function(req, res) {
-    burger.insertOne([
+    burgers.insertOne([
       "burger_name"
     ], [
       req.body.burger_name
@@ -31,7 +31,7 @@ router.get("/", function(req, res) {
   
     console.log("condition", condition);
   
-    burger.updateOne({
+    burgers.updateOne({
       devoured: false,
     }, condition, function (data) {
       res.redirect("/");
@@ -41,7 +41,7 @@ router.get("/", function(req, res) {
   router.delete("/burgers/:id", function(req, res) {
     var condition = "id = " + req.params.id;
   
-    burger.delete(condition, function(result) {
+    burgers.delete(condition, function(result) {
       if (result.affectedRows == 0) {
         return res.status(404).end();
       } else {
